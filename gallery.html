@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri Kelas XI PROKES 2</title>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0b0d1a, #000);
+      color: #e2e8f0;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+    h1 { color: #60a5fa; margin: 20px 0; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,.5);
+    }
+    img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    p { margin: 5px 0; color: #94a3b8; }
+    a.btn {
+      display:inline-block;margin:20px;padding:10px 15px;
+      background:#60a5fa;color:#000;border-radius:8px;text-decoration:none;font-weight:bold
+    }
+  </style>
+</head>
+<body>
+  <h1>📸 Galeri XI PROKES 2</h1>
+  <div class="gallery" id="gallery"></div>
+  <a href="upload.html" class="btn">📤 Upload Foto</a>
+  <a href="index.html" class="btn">🏠 Kembali</a>
+
+  <script>
+    async function loadGallery() {
+      const res = await fetch("https://api.github.com/repos/NAMA_GITHUB/NAMA_REPO/contents/gallery.json");
+      const data = await res.json();
+      const jsonUrl = data.download_url;
+      const gallery = await fetch(jsonUrl).then(r=>r.json());
+      const container = document.getElementById("gallery");
+      container.innerHTML = gallery.map(item => `
+        <div class="card">
+          <img src="${item.url}" alt="foto" />
+          <p>${item.caption || ''}</p>
+        </div>
+      `).join('');
+    }
+    loadGallery();
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kelas XI PROKES 2</title>
+  <style>
+    :root{--primary:#6dd5fa;--card:#1a1c29;--muted:#9ca3af;}
+    body{font-family:'Segoe UI',sans-serif;margin:0;line-height:1.6;color:#f1f5f9;
+      background:radial-gradient(circle at top,#0d1b2a,#000);}
+    header{background:linear-gradient(90deg,rgba(29,53,87,.9),rgba(38,70,129,.9));
+      padding:24px 20px;border-bottom:1px solid #223;}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .brand{font-size:22px;font-weight:700;color:#6dd5fa;text-shadow:0 0 6px #6dd5fa}
+    h1,h2{color:#6dd5fa;text-shadow:0 0 8px rgba(109,213,250,.5)}
+    .card{background:var(--card);border-radius:16px;padding:18px;margin-bottom:18px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid #333}
+    th{background:#223}
+    .students-list{max-height:260px;overflow:auto}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;
+      background:var(--primary);color:#000;font-weight:600;text-decoration:none}
+    footer{text-align:center;padding:20px;color:var(--muted);border-top:1px solid #223}
+    .search{display:flex;gap:8px;margin-bottom:12px}
+    input[type=text]{padding:8px;border-radius:8px;border:1px solid #333;background:#111;color:#f1f5f9;flex:1}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand"> XI PROKES 2 — web</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="schedule" class="card">
+      <h2> Jadwal</h2>
+      <table>
+        <thead><tr><th>Hari</th><th>Mata Pelajaran</th></tr></thead>
+        <tbody>
+          <tr><td>Senin</td><td>Sejarah, SBK, PKWU, Kimia</td></tr>
+          <tr><td>Selasa</td><td>Ekonomi, B. Jepang, SKI, B. Indonesia</td></tr>
+          <tr><td>Rabu</td><td>PJOK, Matematika, Ekonomi, Qurdis, Biologi</td></tr>
+          <tr><td>Kamis</td><td>Biologi, B. Inggris, PPKN, B. Arab</td></tr>
+          <tr><td>Jumat</td><td>B. Jepang, Kimia, Qurdis, Fiqih</td></tr>
+          <tr><td>Sabtu</td><td>Akidah Akhlak, Matematika, Tahsin, Kimia, Biologi</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>👩‍🚀 Daftar Siswa</h2>
+      <div class="search">
+        <input type="text" id="search" placeholder="Cari nama siswa..." oninput="filterStudents()" />
+        <button class="btn" onclick="resetSearch()">Reset</button>
+      </div>
+      <div class="students-list">
+        <table>
+          <thead><tr><th>Nama</th><th>No</th></tr></thead>
+          <tbody id="studentTable">
+            <tr><td>Ahmad Baihaqi</td><td>01</td></tr>
+            <tr><td>Ainun Nasuha</td><td>02</td></tr>
+            <tr><td>Annida’ul Jannah</td><td>03</td></tr>
+            <tr><td>Asyifa Salsabila</td><td>04</td></tr>
+            <tr><td>Atiqah Aqila</td><td>05</td></tr>
+            <tr><td>Aulia Azzahra</td><td>06</td></tr>
+            <tr><td>Aura Azwamia</td><td>07</td></tr>
+            <tr><td>BQ. Laisya Maulida</td><td>08</td></tr>
+            <tr><td>Elina Putri</td><td>09</td></tr>
+            <tr><td>Gina Zahira</td><td>10</td></tr>
+            <tr><td>Izan Doy Pratama</td><td>11</td></tr>
+            <tr><td>Katrunnada R</td><td>12</td></tr>
+            <tr><td>Khairil Azmi</td><td>13</td></tr>
+            <tr><td>Khairina Amada</td><td>14</td></tr>
+            <tr><td>L. Abdullah Aqil</td><td>15</td></tr>
+            <tr><td>M. Rizky Aditya</td><td>16</td></tr>
+            <tr><td>Medita Inggit</td><td>17</td></tr>
+            <tr><td>Miranda Alvinia</td><td>18</td></tr>
+            <tr><td>Mita Aulia</td><td>19</td></tr>
+            <tr><td>Muh. Habib</td><td>20</td></tr>
+            <tr><td>Muh. Hifsil Ikhsa</td><td>21</td></tr>
+            <tr><td>Nana Ameria</td><td>22</td></tr>
+            <tr><td>Nursan</td><td>23</td></tr>
+            <tr><td>Qailan</td><td>24</td></tr>
+            <tr><td>Restu Ibnu Akbar</td><td>25</td></tr>
+            <tr><td>Reva Hilmia Adelia</td><td>26</td></tr>
+            <tr><td>Robiatun</td><td>27</td></tr>
+            <tr><td>Ryo Arnanda</td><td>28</td></tr>
+            <tr><td>Tiara</td><td>29</td></tr>
+            <tr><td>Warid Al Junaid</td><td>30</td></tr>
+            <tr><td>Zidna Ilma</td><td>31</td></tr>
+            <tr><td>Alya</td><td>32</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tombol ke galeri -->
+    <div style="text-align:center;margin-top:20px">
+      <a class="btn" href="gallery.html">🌌 Lihat Galeri</a>
+    </div>
+  </main>
+
+  <footer>© 2025 XI PROKES 2 — Galaxy Edition 🌌</footer>
+
+  <script>
+    function filterStudents(){
+      const q=document.getElementById('search').value.toLowerCase();
+      document.querySelectorAll('#studentTable tr').forEach(r=>{
+        r.style.display=r.cells[0].innerText.toLowerCase().includes(q)?'':'none';
+      });
+    }
+    function resetSearch(){document.getElementById('search').value='';filterStudents();}
+  </script>
+</body>
+</html>

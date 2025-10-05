@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Upload Foto XI PROKES 2</title>
+  <style>
+    body{font-family:'Segoe UI',sans-serif;margin:0;color:#f1f5f9;
+      background:radial-gradient(circle at top,#0d1b2a,#000);
+      display:flex;justify-content:center;align-items:center;height:100vh}
+    .card{background:#1a1c29;padding:20px;border-radius:12px;
+      box-shadow:0 0 10px rgba(0,0,0,.5);width:350px;text-align:center}
+    h2{color:#6dd5fa;margin-bottom:15px}
+    input,textarea{width:100%;margin-bottom:10px;padding:8px;border-radius:6px;
+      border:1px solid #333;background:#111;color:#f1f5f9}
+    button{padding:10px 15px;border:none;border-radius:8px;
+      background:#6dd5fa;color:#000;font-weight:600;cursor:pointer}
+    .btn{display:inline-block;margin-top:10px;padding:8px 12px;
+      border-radius:8px;background:#6dd5fa;color:#000;font-weight:600;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>📤 Upload Foto</h2>
+    <input type="file" id="fileInput" accept="image/*" />
+    <textarea id="captionInput" rows="2" placeholder="Tulis caption..."></textarea>
+    <button onclick="uploadPhoto()">Upload</button><br>
+    <a class="btn" href="gallery.html">⬅ Kembali ke Galeri</a>
+    <div id="status" style="margin-top:10px;color:#9ca3af"></div>
+  </div>
+
+  <script>
+    async function uploadPhoto(){
+      const file=document.getElementById('fileInput').files[0];
+      const caption=document.getElementById('captionInput').value;
+      const status=document.getElementById('status');
+      if(!file){alert("Pilih foto dulu!");return;}
+      
+      const reader=new FileReader();
+      reader.onload=async function(e){
+        const base64Data = e.target.result.split(",")[1];
+        status.innerText = "Mengupload...";
+        
+        try{
+          const res = await fetch("https://NAMA-VERCEL-APP.vercel.app/api/upload", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              imageBase64: base64Data,
+              fileName: file.name,
+              caption: caption
+            })
+          });
+
+          const data = await res.json();
+          if(res.ok){
+            status.innerText = "✅ Upload berhasil!";
+            setTimeout(()=> window.location.href="gallery.html", 1500);
+          } else {
+            status.innerText = "❌ Error: "+data.message;
+          }
+        } catch(err){
+          status.innerText = "❌ Gagal terhubung ke server!";
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+</body>
+</html>
