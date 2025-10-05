@@ -46,7 +46,7 @@
 
   <script>
     async function loadGallery() {
-      const res = await fetch("https://api.github.com/repos/NAMA_GITHUB/NAMA_REPO/contents/gallery.json");
+      const res = await fetch("https://github.com/berlin997/Back/contents/gallery.json");
       const data = await res.json();
       const jsonUrl = data.download_url;
       const gallery = await fetch(jsonUrl).then(r=>r.json());
