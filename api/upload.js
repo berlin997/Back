@@ -9,8 +9,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: "Missing image or filename" });
   }
 
-  const owner = "NAMA_GITHUB";       // ⬅️ ganti
-  const repo = "NAMA_REPO";          // ⬅️ ganti
+  const owner = "berlin997";       // ⬅️ ganti
+  const repo = "Back";          // ⬅️ ganti
   const token = process.env.GITHUB_TOKEN;
 
   const imagePath = `images/${Date.now()}_${fileName}`;
