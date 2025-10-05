@@ -44,21 +44,21 @@
   <a href="upload.html" class="btn">📤 Upload Foto</a>
   <a href="index.html" class="btn">🏠 Kembali</a>
 
-  <script>
-    async function loadGallery() {
-      const res = await fetch("gallery.json");
-      const data = await res.json();
-      const jsonUrl = data.download_url;
-      const gallery = await fetch(jsonUrl).then(r=>r.json());
-      const container = document.getElementById("gallery");
-      container.innerHTML = gallery.map(item => `
-        <div class="card">
-          <img src="${item.url}" alt="foto" />
-          <p>${item.caption || ''}</p>
-        </div>
-      `).join('');
-    }
-    loadGallery();
-  </script>
+<script>
+  async function loadGallery() {
+    const res = await fetch("https://raw.githubusercontent.com/berlin997/Back/main/gallery.json");
+    const gallery = await res.json();
+    const container = document.getElementById("gallery");
+
+    container.innerHTML = gallery.map(item => `
+      <div class="card">
+        <img src="${item.url}" alt="foto" />
+        <p>${item.caption || ''}</p>
+      </div>
+    `).join('');
+  }
+
+  loadGallery();
+</script>
 </body>
 </html>
